@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true krkeshavray/docker-react npm run test
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "keshavapp"
+  env: "Keshavapp-env-1"
+  bucket_name: "elasticbeanstalk-ap-south-1-522674882633"
+  bucket_path: "keshavapp"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
