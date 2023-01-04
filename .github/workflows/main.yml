@@ -10,7 +10,6 @@ on:
 jobs:
   postgres-job:
     runs-on: ubuntu-latest
-    container: ubuntu:latest
     services:
       neem-pms-db:
         image: postgres:latest
