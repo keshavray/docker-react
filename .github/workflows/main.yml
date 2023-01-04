@@ -5,9 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     container: node:latest
     services:
-      postgres:
+      neem-pms-db:
         image: postgres:latest
-        #container_name: neem-pms-db
         env:
           POSTGRES_DB: postgres_db
           POSTGRES_PASSWORD: postgres_password
@@ -29,6 +28,9 @@ jobs:
           apt-get update
           apt-get install --yes postgresql-client
 
+      - name: Install PostgreSQL client
+        run: |
+            docker ps
       # queries database with postgres client
       - name: Query database
         run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
