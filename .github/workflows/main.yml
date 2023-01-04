@@ -3,6 +3,7 @@ on: [workflow_dispatch, push]
 jobs:
   postgres-job:
     runs-on: ubuntu-latest
+    container: ubuntu:latest
     services:
       neem-pms-db:
         image: postgres:latest
@@ -27,9 +28,6 @@ jobs:
           apt-get update
           apt-get install --yes postgresql-client
 
-      - name: Install PostgreSQL client
-        run: |
-            docker ps
       # queries database with postgres client
       - name: Query database
         run: psql -h postgres -d postgres_db -U postgres_user -c 'SELECT 1;'
